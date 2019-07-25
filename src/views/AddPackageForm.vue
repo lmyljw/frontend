@@ -1,12 +1,12 @@
 <template>
     <div>
         <label>包裹入库</label>
-        <Form :model="formLeft" label-position="left" :label-width="100">
+        <Form :model="package" label-position="left" :label-width="100">
             <FormItem label="运单号">
                 <Input v-model="package.id"></Input>
             </FormItem>
             <FormItem label="收件人">
-                <Input v-model="package.customer"></Input>
+                <Input v-model="package.customerName"></Input>
             </FormItem>
             <FormItem label="电话">
                 <Input v-model="package.phoneNumber"></Input>

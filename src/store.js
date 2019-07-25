@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import VueRouter from 'vue-router'
+import iView from 'iview';
+import 'iview/dist/styles/iview.css';
+Vue.use(iView)
 Vue.use(Vuex)
 Vue.use(VueRouter)
 export default new Vuex.Store({
@@ -43,7 +46,7 @@ export default new Vuex.Store({
       state.packageList[index].status='已取件';
     },
     addSuccess(){
-      this.$Message.info('This is a info tip');
+      $Message.info('This is a info tip');
     }
   },
 
@@ -59,7 +62,9 @@ export default new Vuex.Store({
       });
     },
     confirmFetch(context,index){
-      axios.put('http://localhost:8088/express-packages/'+context.state.packageList[index].id,{"status":1})
+      this.package=context.state.packageList[index]
+      this.package.status=1
+      axios.put('http://localhost:8088/express-packages/'+this.package.id,this.package)
       .then((response)=>{
         context.commit('confirmFetch',index)
         console.log(response)
@@ -69,6 +74,7 @@ export default new Vuex.Store({
       })
     },
     addPackage(context,pacakage){
+      pacakage.status=3;
       axios.post('http://localhost:8088/express-packages',pacakage)
       .then((response)=>{
         context.commit('addSuccess')

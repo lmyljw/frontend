@@ -5,8 +5,8 @@
     </div>
 </template>
 <script>
-import FilterBtn from './FilterBtn.vue'
-import Item from './Item.vue'
+import FilterBtn from '../components/FilterBtn'
+import Item from '../components/Item.vue'
 export default {
     name:'list',
     components: {
