@@ -13,8 +13,6 @@ export default {
         FilterBtn,
         Item
     },
-    mounted:function(){
-        this.$store.dispatch('initItem')
-    },
+    
 }
 </script>

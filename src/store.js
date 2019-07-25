@@ -40,6 +40,17 @@ export default new Vuex.Store({
           case(3):item.status='未预约';break;
         }
       })
+      payload.data.map(item=>{
+        var datetimeType=''
+        var date=new Date(item.appoinmentTime)
+        datetimeType+= date.getFullYear();   
+        datetimeType+= "-" + date.getMonth(); 
+        datetimeType+= "-" + date.getDay();   
+        datetimeType+= " " + date.getHours();   
+        datetimeType+= ":" + date.getMinutes();      
+        datetimeType+= ":" + date.getSeconds();      
+        item.appoinmentTime=datetimeType
+      })
       state.packageList=payload.data;
     },
     confirmFetch(state,index){
@@ -73,6 +84,21 @@ export default new Vuex.Store({
         console.log(error);
       })
     },
+    appointTime(context,pacakage){
+      console.log(context.state.packageList)
+      let target=context.state.packageList.filter(item=>item.id==parseInt(pacakage.id))
+      console.log(target)
+      target[0].status=2
+      target[0].appoinmentTime=pacakage.appoinmentTime
+      axios.put('http://localhost:8088/express-packages/'+pacakage.id,target[0])
+      .then((response)=>{
+        context.commit('appointTime')
+        console.log(response)
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+    },
     addPackage(context,pacakage){
       pacakage.status=3;
       axios.post('http://localhost:8088/express-packages',pacakage)
@@ -83,6 +109,6 @@ export default new Vuex.Store({
       .catch(function (error) {
         console.log(error);
       })
-    }
+    },
   }
 })

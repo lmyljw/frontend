@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import List from './views/List.vue'
 import AddPackageForm from './views/AddPackageForm.vue'
+import AppointTime from './views/AppointTime.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -12,6 +13,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
+      redirect:'/list',
       component: Home,
       children:[{
         path:'list',
@@ -19,9 +21,14 @@ export default new Router({
         component:List
       },
       {
-        path:'form',
-        name:'form',
+        path:'addPackageForm',
+        name:'addPackageForm',
         component:AddPackageForm
+      },
+      {
+        path:'appointTimeForm',
+        name:'appointTimeForm',
+        component:AppointTime
       }
     ]
     },

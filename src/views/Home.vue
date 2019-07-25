@@ -2,14 +2,18 @@
   <div class="home">
     <Layout>
       <Sider breakpoint="md" collapsible :collapsed-width="78" v-model="isCollapsed">
-        <Menu active-name="1-2" theme="dark" width="auto" :class="menuitemClasses">
-          <MenuItem name="1-2">
+        <Menu active-name="1-1" theme="dark" width="auto" :class="menuitemClasses">
+          <MenuItem name="1-1">
             <Icon type="ios-search"></Icon>
             <span><li><router-link :to="{name:'list'}">package list</router-link></li></span>
           </MenuItem>
-          <MenuItem name="1-3">
+          <MenuItem name="1-2">
             <Icon type="ios-settings"></Icon>
-            <span><li><router-link :to="{name:'form'}"> 包裹入库</router-link></li></span>
+            <span><li><router-link :to="{name:'addPackageForm'}"> 包裹入库</router-link></li></span>
+          </MenuItem>
+          <MenuItem name="1-3">
+            <Icon type="ios-navigate"></Icon>
+            <span><li><router-link :to="{name:'appointTimeForm'}"> 预约取件</router-link></li></span>
           </MenuItem>
         </Menu>
         <div slot="trigger"></div>
@@ -28,6 +32,7 @@
 <script>
 import List from '../views/List.vue'
 import AddPackageForm from '../views/AddPackageForm.vue'
+import AppointTime from '../views/AppointTime.vue'
 export default {
   name: 'home',
    data () {
@@ -43,14 +48,18 @@ export default {
       ]
     }
   },
+  mounted:function(){
+        this.$store.dispatch('initItem')
+    },
   components: {
-    List
+
   }
 }
 </script>
 <style scoped>
     .layout{
       border: 1px solid #d7dde4;
+      height: 1000px;
       background: #f5f7f9;
       position: relative;
       border-radius: 4px;
