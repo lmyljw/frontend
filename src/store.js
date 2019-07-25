@@ -41,15 +41,19 @@ export default new Vuex.Store({
         }
       })
       payload.data.map(item=>{
-        var datetimeType=''
-        var date=new Date(item.appoinmentTime)
-        datetimeType+= date.getFullYear();   
-        datetimeType+= "-" + date.getMonth(); 
-        datetimeType+= "-" + date.getDay();   
-        datetimeType+= " " + date.getHours();   
-        datetimeType+= ":" + date.getMinutes();      
-        datetimeType+= ":" + date.getSeconds();      
-        item.appoinmentTime=datetimeType
+        if(item.appoinmentTime==0){
+          item.appoinmentTime=''
+        }else{
+          var datetimeType=''
+          var date=new Date(item.appoinmentTime)
+          datetimeType+= date.getFullYear();   
+          datetimeType+= "-" + date.getMonth(); 
+          datetimeType+= "-" + date.getDay();   
+          datetimeType+= " " + date.getHours();   
+          datetimeType+= ":" + date.getMinutes();      
+          datetimeType+= ":" + date.getSeconds();      
+          item.appoinmentTime=datetimeType
+        }
       })
       state.packageList=payload.data;
     },
