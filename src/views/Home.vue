@@ -1,18 +1,37 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Layout>
+            <Sider breakpoint="md" collapsible :collapsed-width="78" v-model="isCollapsed">
+                <Menu active-name="1-2" theme="dark" width="auto" :class="menuitemClasses">
+                    <MenuItem name="1-2">
+                        <Icon type="ios-search"></Icon>
+                        <span><li><router-link :to="{name:'list'}">package list</router-link></li></span>
+                    </MenuItem>
+                    <MenuItem name="1-3">
+                        <Icon type="ios-settings"></Icon>
+                        <span><li><router-link :to="{name:'todolist'}"> todolist</router-link></li></span>
+                    </MenuItem>
+                </Menu>
+                <div slot="trigger"></div>
+            </Sider>
+            <Layout>
+                <Header class="layout-header-bar"></Header>
+                <Content :style="{margin: '20px', background: '#fff', minHeight: '220px'}">
+                    <router-view></router-view>
+                </Content>
+            </Layout>
+        </Layout>
+    <!-- <List></List> -->
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import List from '../components/List.vue'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    List
   }
 }
 </script>
