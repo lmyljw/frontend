@@ -41,8 +41,12 @@ export default new Vuex.Store({
     },
     confirmFetch(state,index){
       state.packageList[index].status='已取件';
+    },
+    addSuccess(){
+      this.$Message.info('This is a info tip');
     }
   },
+
   actions: {
     initItem(context){
       axios.get('http://localhost:8088/express-packages')
@@ -63,7 +67,16 @@ export default new Vuex.Store({
       .catch(function (error) {
         console.log(error);
       })
-      
+    },
+    addPackage(context,pacakage){
+      axios.post('http://localhost:8088/express-packages',pacakage)
+      .then((response)=>{
+        context.commit('addSuccess')
+        console.log(response)
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
     }
   }
 })

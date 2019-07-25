@@ -9,7 +9,7 @@
                     </MenuItem>
                     <MenuItem name="1-3">
                         <Icon type="ios-settings"></Icon>
-                        <span><li><router-link :to="{name:'todolist'}"> todolist</router-link></li></span>
+                        <span><li><router-link :to="{name:'form'}"> 包裹入库</router-link></li></span>
                     </MenuItem>
                 </Menu>
                 <div slot="trigger"></div>
@@ -27,7 +27,7 @@
 
 <script>
 import List from '../components/List.vue'
-
+import AddPackageForm from '../components/AddPackageForm.vue'
 export default {
   name: 'home',
   components: {
